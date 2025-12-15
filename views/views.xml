@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="stn_create_invoices_api.list">
+      <field name="name">stn_create_invoices_api list</field>
+      <field name="model">stn_create_invoices_api.stn_create_invoices_api</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </list>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="stn_create_invoices_api.action_window">
+      <field name="name">stn_create_invoices_api window</field>
+      <field name="res_model">stn_create_invoices_api.stn_create_invoices_api</field>
+      <field name="view_mode">list,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="stn_create_invoices_api.action_server">
+      <field name="name">stn_create_invoices_api server</field>
+      <field name="model_id" ref="model_stn_create_invoices_api_stn_create_invoices_api"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "list,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="stn_create_invoices_api" id="stn_create_invoices_api.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="stn_create_invoices_api.menu_1" parent="stn_create_invoices_api.menu_root"/>
+    <menuitem name="Menu 2" id="stn_create_invoices_api.menu_2" parent="stn_create_invoices_api.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="stn_create_invoices_api.menu_1_list" parent="stn_create_invoices_api.menu_1"
+              action="stn_create_invoices_api.action_window"/>
+    <menuitem name="Server to list" id="stn_create_invoices_api" parent="stn_create_invoices_api.menu_2"
+              action="stn_create_invoices_api.action_server"/>
+-->
+  </data>
+</odoo>

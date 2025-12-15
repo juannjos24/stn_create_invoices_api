@@ -103,6 +103,7 @@ class ApiController(http.Controller):
             if not name: missing_fields.append('name')
             if not email: missing_fields.append('email')
             if not phone: missing_fields.append('phone')
+            if not id_secondary: missing_fields.append('id_secondary')
 
             return self._create_response(
                 {'status': 'error', 'message': f'Missing required contact fields: {", ".join(missing_fields)}'},
@@ -205,19 +206,16 @@ class ApiController(http.Controller):
                 {'status': 'error', 'message': 'No valid contact data provided in payload.'},
                 400
             )
-
+        
         name = contact_data.get('name')
-        email = contact_data.get('email')
-        phone = contact_data.get('phone')
         id_secondary = contact_data.get('id_secondary')  # Usamos el ID secundario para identificar el contacto
 
         # Validación de campos esenciales
-        if not name or not email or not phone or not id_secondary:
-            missing_fields = []
-            if not name: missing_fields.append('name')
-            if not email: missing_fields.append('email')
-            if not phone: missing_fields.append('phone')
-
+        if  not id_secondary or not name:
+            missing_fields = []           
+            if not id_secondary: missing_fields.append('id_secondary')
+            if not name:missing_fields.append('name')
+            
             return self._create_response(
                 {'status': 'error', 'message': f'Missing required contact fields: {", ".join(missing_fields)}'},
                 400
@@ -239,23 +237,27 @@ class ApiController(http.Controller):
             contact_data.pop('id_secondary', None)  # Eliminar el campo de 'id_secondary' si está presente en la solicitud
 
             # Actualizar el contacto con los nuevos datos
-            existing_contact.write({
+            existing_contact.write({               
+                'active': contact_data.get('active', True),
+                'company_type': contact_data.get('company_type'),
                 'name': contact_data.get('name'),
                 'email': contact_data.get('email'),
                 'phone': contact_data.get('phone'),
-                'active': contact_data.get('active', True),
-                'company_type': contact_data.get('company_type'),
                 'parent_id': contact_data.get('parent_id'),
                 'street': contact_data.get('street'),
                 'street2': contact_data.get('street2'),
+                'city_id': contact_data.get('city_id'),
                 'city': contact_data.get('city'),
                 'state_id': contact_data.get('state_id'),
                 'zip': contact_data.get('zip'),
                 'country_id': contact_data.get('country_id'),
                 'vat': contact_data.get('vat'),
-                'l10n_mx_edi_fiscal_regime': contact_data.get('l10n_mx_edi_fiscal_regime'),
-                'user_id': contact_data.get('user_id'),
                 'l10n_mx_edi_usage': contact_data.get('l10n_mx_edi_usage'),
+                'l10n_mx_edi_fiscal_regime': contact_data.get('l10n_mx_edi_fiscal_regime'),
+                'l10n_mx_edi_payment_method_id': contact_data.get('l10n_mx_edi_payment_method_id'),
+                'property_payment_term_id': contact_data.get('property_payment_term_id'),
+                'property_product_pricelist': contact_data.get('property_product_pricelist'),
+                'user_id': contact_data.get('user_id'),
                 'lang': contact_data.get('lang', 'es_MX'),
                 'ref': contact_data.get('ref'),
             })

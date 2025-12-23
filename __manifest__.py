@@ -10,8 +10,8 @@
         Configura las claves de API necesarias para la autenticación y uso de la API.
         También incluye una vista para gestionar las claves de API dentro de Odoo.
     """,
-    'author': 'Tu Nombre',
-    'website': 'https://www.tusitio.com',  # Si tienes un sitio web, inclúyelo aquí.
+    'author': 'Juan Jose Moreno',
+    'website': 'https://www.stones.solutions', 
     'depends': ['base', 'contacts'],  # Dependencias correctas para manejar contactos
     'data': [
         'security/ir.model.access.csv',  # Definición de permisos
